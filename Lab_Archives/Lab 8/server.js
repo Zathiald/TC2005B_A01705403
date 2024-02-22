@@ -4,25 +4,78 @@ console.log("hola mundo desde node");
 
 const filesystem = require('fs');
 // Escribe el string segundo parámetro en el archivo indicado en el primer paramétro
-filesystem.writeFileSync("hola.txt", "Hola desde node");
+filesystem.writeFileSync("hola.txt", "Hola gente de youtube, desde node");
 
-setTimeout(() => {
-    console.log("jojo te hackié");
-}, 7000);
-
-const arreglo = [5000, 60, 90, 100, 10, 20, 10000, 0, 120, 2000, 340, 1000, 50];
-
+const arreglo = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let suma = 0;
 // Código asincrono, el arreglo lo imprime en orden
 for (let item of arreglo){
-    setTimeout(() => {
-        console.log(item);
-    }, item);
+    suma +=item;
 };
 
-/* Mete lo anterior a la pila y esto se escribe al principio, por que lo demás 
-  esta como "pending". A esto se refiere asincrono. Como no tiene un tiempo en el que 
-  se tiene que ejecutar, se pone antes que todo lo demás. */
-console.log("Esto se escribe antes de los números");
+let promedio = suma/arreglo.length;
+
+console.log(`El promedio del arreglo es ${promedio}`)
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let personaje = {
+  nombre:'',
+  nivel:1,
+  vida:55,
+  fuerza:10
+};
+
+let enemigo = {
+  nombre:"Tec",
+  nivel:1,
+  vida:50,
+  fuerza:5
+};
+
+rl.question('Por favor ingresa tu nombre: ',(nombre) => {
+  console.log(`Bienvenido a TEC VS ${nombre}`);
+  personaje.nombre=nombre;
+
+  function atacar(atacante, defensor) {
+    let daño = atacante.fuerza;
+    defensor.vida -= daño;
+
+    // Agregar una probabilidad del 25% de golpe crítico
+    if(Math.random() < 0.25) {
+      daño *= 2;
+      console.log('¡Golpe crítico!');
+    }
+
+    console.log(`${atacante.nombre} ataca a ${defensor.nombre} y le causa ${daño} puntos de daño.`);
+    console.log(`${defensor.nombre} tiene ${defensor.vida} puntos de vida restantes.`);
+
+    if(defensor.vida <= 0) {
+      console.log(`${defensor.nombre} ha sido derrotado!`);
+    }
+  }
+
+  function curar(jugador){
+    let curacion = Math.random();
+
+    personaje.vida += curacion;
+
+    console.log(`${jugador.nombre} ha recuperado ${curacion} puntos de vida.`);
+  }
+
+  while(personaje.vida > 0 && enemigo.vida > 0) {
+      atacar(personaje,enemigo);
+      atacar(enemigo,personaje);
+  }
+
+  rl.close();
+});
+
 
 /* PRIMER SERVIDOR WEB */
 
