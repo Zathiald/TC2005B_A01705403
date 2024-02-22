@@ -1,0 +1,48 @@
+body{
+
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg,#511512 15%,#9d2e2e 47%,#d93131 60%);
+}
+
+header{
+    text-align: center;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg,#c15c56 15%,#763737 47%,#710707 60%);
+    color:whitesmoke;
+    font-family: 'Audiowide';
+}
+
+td,th{
+    border:2px solid #000;
+    color: whitesmoke;
+}
+
+ul,ol{
+    color:whitesmoke;
+}
+
+details{
+    color:whitesmoke;
+}
+
+p{
+    text-align: center;
+    color:whitesmoke;
+}
+
+h3{
+    text-align: center;
+    color:whitesmoke;
+    font-family: 'Aclonica';
+}
+
+i{
+    text-align: center;
+    color:whitesmoke;
+    font-family:'Alerta Stencil'
+}
+
+.r{
+    color:whitesmoke;
+    font-family: 'Alerta Stencil';
+}

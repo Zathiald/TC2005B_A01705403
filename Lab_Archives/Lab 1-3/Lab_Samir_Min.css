@@ -1,0 +1,14 @@
+footer,header{background:#020024;padding:.5px;text-align:center}
+        #l,footer,h1,h3,h4,header,p,.r{text-align:center}i,p,.r{color:#ccc9c9}
+        body{background:#020024;background:linear-gradient(320deg,#29719e 15%,#132890 47%,#1476b2 60%)}
+        header{background:linear-gradient(270deg,#020024 0,#090979 35%,#0395b3 100%)}
+        footer{background:linear-gradient(270deg,rgba(3,149,179) 35%,#090979 100%,#020024 0%);font-family:Armata}
+        table{border:1px solid #b2b2b2}
+        td,th{border:1px solid #000}
+        h1{color:#d2d2d2;font-family:Audiowide}
+        h3{color:#2eb2bd;font-family:Aclonica;font-size:large}
+        #l{color:#0a9cf5}p{font-family:Balthazar}
+        .r{font-family:'Alerta Stencil'}
+        i{font-family:'Alerta Stencil'}
+        ul,ol{color:whitesmoke;}
+        details{color:whitesmoke;}
