@@ -17,6 +17,12 @@ let promedio = suma/arreglo.length;
 
 console.log(`El promedio del arreglo es ${promedio}`)
 
+
+function numeroAleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -27,15 +33,15 @@ const rl = readline.createInterface({
 let personaje = {
   nombre:'',
   nivel:1,
-  vida:55,
+  vida:70,
   fuerza:10
 };
 
 let enemigo = {
   nombre:"Tec",
   nivel:1,
-  vida:50,
-  fuerza:5
+  vida:40,
+  fuerza:15
 };
 
 rl.question('Por favor ingresa tu nombre: ',(nombre) => {
@@ -61,20 +67,43 @@ rl.question('Por favor ingresa tu nombre: ',(nombre) => {
   }
 
   function curar(jugador){
-    let curacion = Math.random();
+    let curacion = numeroAleatorio(0,10);
 
     personaje.vida += curacion;
 
     console.log(`${jugador.nombre} ha recuperado ${curacion} puntos de vida.`);
+    console.log(`${jugador.nombre} tiene ${jugador.vida} puntos de vida restantes.`);
   }
 
-  while(personaje.vida > 0 && enemigo.vida > 0) {
-      atacar(personaje,enemigo);
-      atacar(enemigo,personaje);
+  function turnoJugador() {
+    rl.question('¿Quieres atacar o curarte? (a/c): ', (accion) => {
+      if(accion.toLowerCase() === 'a') {
+        atacar(personaje, enemigo);
+      } else {
+        curar(personaje);
+      }
+
+      if(enemigo.vida > 0) {
+        turnoEnemigo();
+      } else {
+        rl.close();
+      }
+    });
   }
 
-  rl.close();
+  function turnoEnemigo() {
+    atacar(enemigo, personaje);
+
+    if(personaje.vida > 0) {
+      turnoJugador();
+    } else {
+      rl.close();
+    }
+  }
+
+  turnoJugador();
 });
+
 
 
 /* PRIMER SERVIDOR WEB */
