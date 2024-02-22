@@ -67,7 +67,7 @@ rl.question('Por favor ingresa tu nombre: ',(nombre) => {
   }
 
   function curar(jugador){
-    let curacion = numeroAleatorio(0,10);
+    let curacion = numeroAleatorio(0,20);
 
     personaje.vida += curacion;
 
