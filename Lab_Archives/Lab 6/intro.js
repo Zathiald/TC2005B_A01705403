@@ -8,6 +8,10 @@ let play=350;
 let xbox=200;
 let wiiu=100;
 
+function updateValue(id, value) {
+    document.getElementById('displayValue' + id).innerText = value;
+}
+
 document.getElementById('quantity1').addEventListener('input', function() {
     updateValue(1, this.value);
 });
