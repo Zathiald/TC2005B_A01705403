@@ -96,7 +96,7 @@ const header=
     </div>
   </nav>`;
 
-const construcciones = [{nombre: "casa", imagen: 'https://i.blogs.es/7cfcd0/casas-en-minecraft/1366_2000.jpeg'}];
+const construcciones = [{nombre: "casa", imagen: "https://i.blogs.es/7cfcd0/casas-en-minecraft/1366_2000.jpeg"}];
 
 // Creas el servidor con create server
 const server = http.createServer( (request, response) => {
@@ -132,14 +132,14 @@ const server = http.createServer( (request, response) => {
                             <div class="card">
                               <div class="card-image">
                                 <figure class="image is-4by3">
-                                  <img src='${construccion.imagen}' alt="Placeholder image">
+                                  <img src=${construccion.imagen} alt="Placeholder image">
                                 </figure>
                               </div>
                               <div class="card-content">
                                 <div class="media">
                                   <div class="media-left">
                                     <figure class="image is-48x48">
-                                      <img src='${construccion.imagen}' alt="Placeholder image">
+                                      <img src=${construccion.imagen} alt="Placeholder image">
                                     </figure>
                                   </div>
                                   <div class="media-content">
@@ -198,7 +198,9 @@ const server = http.createServer( (request, response) => {
             console.log(nombre);
             const imagen = datos_completos.split('&')[1].split('=')[1];
             console.log(imagen);
-            construcciones.push({nombre: nombre, imagen: imagen});
+            const decodedimagen = decodeURIComponent(imagen);
+            console.log(decodedimagen);
+            construcciones.push({nombre: nombre, imagen: decodedimagen});
             return response.end();
         });
     }
