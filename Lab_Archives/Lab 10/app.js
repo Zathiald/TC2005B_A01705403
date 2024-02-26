@@ -190,6 +190,8 @@ const server = http.createServer( (request, response) => {
             console.log(dato);
             datos.push(dato);
         });
+
+        const filesystem = require('fs');
         
         return request.on('end',() =>{
             const datos_completos = Buffer.concat(datos).toString();
@@ -201,6 +203,8 @@ const server = http.createServer( (request, response) => {
             const decodedimagen = decodeURIComponent(imagen);
             console.log(decodedimagen);
             construcciones.push({nombre: nombre, imagen: decodedimagen});
+            const dataToSave = `Nombre: ${nombre}, Imagen: ${decodedimagen}\n`;
+            filesystem.appendFileSync("datos.txt", dataToSave);
             return response.end();
         });
     }
