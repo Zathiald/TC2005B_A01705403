@@ -1,0 +1,11 @@
+{
+  "name": "tc2005b_a01705403",
+  "version": "1.0.0",
+  "description": "Proyecto del curso TC2005B sobre ingresar y guardar imagenes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

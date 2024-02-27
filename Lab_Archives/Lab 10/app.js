@@ -25,7 +25,16 @@ const footer=
   </p>
 </div>
 </footer>
-<script src="js/poe.js"></script>`;
+<script src="
+  function cambiarEstilo() {
+  document.getElementById("miParrafo").className = "is-size-1 has-text-danger";
+  document.getElementById("miParrafo").innerHTML = "BOO! ah te espante";
+}
+
+function restaurarEstilo() {
+  document.getElementById("miParrafo").className = "is-size-4";
+  document.getElementById("miParrafo").innerHTML = "Pasa el cursor sobre este texto";
+}"></script>`;
 
 const header=
 ` <head>
@@ -164,6 +173,17 @@ const server = http.createServer( (request, response) => {
         response.write(footer);
         // Envía la respuesta del servidor
         response.end();
+    }
+
+    else if(request.url == '/sorpresa'){
+      response.write(header);
+      response.write(`<div class="container">
+      <h1 class="title has-text-centered is-italic is-1 is-family-code">Lab 6</h1>
+      <p id='result'></p>
+  
+      <p id="miParrafo" class="is-size-4" onmouseover="cambiarEstilo()" onmouseout="restaurarEstilo()">Texto sorpresa</p>
+      `)
+      response.write(footer);
     }
 
     else if(request.url == '/construir' && request.method=="GET"){
