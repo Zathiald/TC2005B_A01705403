@@ -1,0 +1,30 @@
+{
+  "name": "lab-11",
+  "version": "1.0.0",
+  "description": "Laboratorio 11 - Express del curso TC2005B",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zathiald/TC2005B_A01705403.git"
+  },
+  "keywords": [
+    "tc2005b"
+  ],
+  "author": "Samir Baidon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zathiald/TC2005B_A01705403/issues"
+  },
+  "homepage": "https://github.com/Zathiald/TC2005B_A01705403#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2"
+  }
+}

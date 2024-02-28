@@ -25,7 +25,7 @@ const footer=
   </p>
 </div>
 </footer>
-<script src="
+<script>
   function cambiarEstilo() {
   document.getElementById("miParrafo").className = "is-size-1 has-text-danger";
   document.getElementById("miParrafo").innerHTML = "BOO! ah te espante";
@@ -34,7 +34,8 @@ const footer=
 function restaurarEstilo() {
   document.getElementById("miParrafo").className = "is-size-4";
   document.getElementById("miParrafo").innerHTML = "Pasa el cursor sobre este texto";
-}"></script>`;
+}
+</script>`;
 
 const header=
 ` <head>
