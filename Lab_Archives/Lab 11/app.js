@@ -19,7 +19,12 @@ app.use((request, response, next) => {
 
 const rutasApp = require('./routes/construcciones.routes')
 
+const rutasExtra = require('./routes/extra.routes')
+
 app.use('/',rutasApp);
+
+app.use('/',rutasExtra);
+
 
 app.use((request,response,next)=>{
     response.status(404);

@@ -1,0 +1,21 @@
+<%- include('includes/head.ejs' )%>
+
+<blockquote> El archivo package.json es un componente fundamental en proyectos de JavaScript y es utilizado por npm, el gestor de paquetes más popular. Contiene metadatos importantes sobre el proyecto, como su nombre, versión, dependencias necesarias y scripts disponibles para su ejecución </blockquote>
+    <p class="has-text-centered"> Unos de los campos mas comunes en un archivo package.json son:</p> 
+    <ol type="I">
+    <li> name: Nombre del proyecto, librería o paquete. Se recomienda que coincida con el nombre del repositorio.</li>
+    <li> version:  Versión del paquete. Generalmente se utiliza semver (Semantic Versioning) para especificar versiones.</li>
+    <li> description: Breve descripción del paquete o proyecto. </li>
+    <li> main: Punto de entrada del proyecto. Por lo general, es index.js (para Node.js) o index.html (para navegadores).</li>
+    <li> scripts: Colección de scripts del proyecto. Estos scripts pueden ser ejecutados con comandos como npm run <script-name>.</li>
+    <li> keywords: Palabras clave relacionadas con el proyecto. Útil para búsquedas.</li> 
+    <li> author: Nombre del autor del paquete o proyecto.</li>
+    <li> license: Tipo de licencia del paquete o proyecto. Por defecto, suele ser ISC.</li>
+    <li> dependencies:  Colección de paquetes necesarios para producción y sus versiones instaladas.</li>
+    <li> devDependencies: Colección de paquetes necesarios para desarrollo y sus versiones instaladas.</li>
+    <li> homepage: URL de la página principal del paquete.</li>
+    <li> repository: URL del repositorio. Debe indicar el tipo (por ejemplo, git) y la ruta.</li>
+    <li> bugs: Objeto con un campo url que apunta a la página de issues del proyecto.</li>
+    </ol>
+
+<%- include('includes/footer.ejs')%>
