@@ -16,14 +16,87 @@ const footer=
   </body>
   <script>
 
-  function cambiarEstilo() {
-    document.getElementById("miParrafo").className = "is-size-1 has-text-danger";
-    document.getElementById("miParrafo").innerHTML = "BOO! ah te espante";
-  };
+    var price1=0;
+    var price2=0;
+    var price3=0;
+    var price4=0;
 
-  function restaurarEstilo() {
-    document.getElementById("miParrafo").className = "is-size-4";
-    document.getElementById("miParrafo").innerHTML = "Pasa el cursor sobre este texto";
+    let wii=300;
+    let play=350;
+    let xbox=200;
+    let wiiu=100;
+
+    function updateValue(id, value) {
+        document.getElementById('displayValue' + id).innerText = value;
+    }
+
+    document.getElementById('quantity1').addEventListener('input', function() {
+        updateValue(1, this.value);
+    });
+
+    document.getElementById('quantity2').addEventListener('input', function() {
+        updateValue(2, this.value);
+    });
+
+    document.getElementById('quantity3').addEventListener('input', function() {
+        updateValue(3, this.value);
+    });
+
+    document.getElementById('quantity4').addEventListener('input', function() {
+        updateValue(4, this.value);
+    });
+
+    function saveQuantity1() {
+        price1 = parseInt(document.getElementById('displayValue1').innerText);
+        if (price1) {
+            console.log(price1); // Imprime el valor en la consola para verificar
+        } else {
+            console.log('displayValue1 está vacío');
+        }
+    }
+
+    function saveQuantity2() {
+        price2 = parseInt(document.getElementById('displayValue2').innerText);
+        if (price2) {
+            console.log(price2); // Imprime el valor en la consola para verificar
+        } else {
+            console.log('displayValue1 está vacío');
+        }
+    }
+
+    function saveQuantity3() {
+        price3 = parseInt(document.getElementById('displayValue3').innerText);
+        if (price3) {
+            console.log(price3); // Imprime el valor en la consola para verificar
+        } else {
+            console.log('displayValue1 está vacío');
+        }
+    }
+
+    function saveQuantity4() {
+        price4 = parseInt(document.getElementById('displayValue4').innerText);
+        if (price4) {
+            console.log(price4); // Imprime el valor en la consola para verificar
+        } else {
+            console.log('displayValue1 está vacío');
+        }
+    }
+
+    function calculateTotal(){
+        var iva=0.16;
+        var subtotal = (price1*wii) + (price2*play) + (price3*xbox) + (price4*wiiu);
+        var totalIVA = subtotal * iva;
+        var total = subtotal + totalIVA;
+
+        var factura = document.getElementById('factura');
+        factura.innerHTML = '';
+        factura.innerHTML += '<div class="box"><figure class="image is-128x128"><img class="image-is-rounded" src="https://gamebroslb.com/cdn/shop/products/61cRuXhruLL._SL1200.jpg?v=1690967736&width=1445"></img></figure><h2 class="has-text-centered" readonly> Wii</h2> <h2 class="has-text-centered" readonly> Cantidad: '+ price1 +'</h2><h2 class="has-text-centered" readonly> Subtotal: ' +(price1*wii) +'</h2></div>';
+        factura.innerHTML += '<div class="box"><figure class="image is-128x128"><img class="image-is-rounded" src="https://m.media-amazon.com/images/I/61C80byb-TL.jpg"></img></figure><h2 class="has-text-centered" readonly> Playstation 3</h2><h2 class="has-text-centered" readonly> Cantidad: '+ price2 + '</h2><h2 class="has-text-centered" readonly> Subtotal: '+(price2*play) +'</h2></div>';
+        factura.innerHTML += '<div class="box"><figure class="image is-128x128"><img class="image-is-rounded" src="https://http2.mlstatic.com/D_Q_NP_834546-MLA50832788403_072022-O.webp"></img></figure><h2 class="has-text-centered" readonly> Xbox</h2><h2 class="has-text-centered" readonly> Cantidad: '+ price3 +'</h2><h2 class="has-text-centered" readonly> Subtotal: '+(price3*xbox)+'</h2></div>';
+        factura.innerHTML += '<div class="box"><figure class="image is-128x128"><img class="image-is-rounded" src="https://i0.wp.com/agrlv.com/wp-content/uploads/2019/05/wiiu-ss-blk.jpg?fit=800%2C800"></img></figure><h2 class="has-text-centered" readonly> Wii U</h2><h2 class="has-text-centered" readonly> Cantidad: '+ price4 +'</h2><h2 class="has-text-centered" readonly> Subtotal: '+(price4*wiiu)+'</h2></div>';
+        factura.innerHTML += '<div class="has-text-centered">IVA: ' + totalIVA + '<br></div>';
+        factura.innerHTML += '<div class="has-text-centered">Total: ' + total + '<br></div>';
+    }
 
     const fechaActual = new Date();
     const fechaFormateada = fechaActual.toLocaleDateString();
@@ -45,6 +118,7 @@ const header=
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Minecraft</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <script src="https://kit.fontawesome.com/35e7274595.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -128,7 +202,123 @@ router.get('/sorpresa',(request,response,next)=>{
 
 router.get('/compra',(request,response,next)=>{
     console.log(request.body);
-    response.send(header +`` + footer);
+    response.send(header +` 
+    <section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered is-italic is-1 is-family-code">Electric Shop</h1>
+        <p id='result'></p>
+
+        <!--Producto 1-->
+        <div class="columns is-multiline">
+            <div class="column is-one-third">
+                <figure class="image is-128x128 has-text-centered">
+                        <img class="image is-rounded" src="https://gamebroslb.com/cdn/shop/products/61cRuXhruLL._SL1200.jpg?v=1690967736&width=1445">
+                </figure>
+                    <div class="box">
+                        <h2 class="has-text-centered has-text-weight-bold" readonly> Nintendo Wii</h2>
+                        <h2 class="has-text-centered" readonly> Release Date: November 2006</h2>
+                        <h2 class="has-text-centered" readonly id="price1"> Price: $300</h2>
+                        <label for="quantity1">Cantidad: <span id="displayValue1"></span></label>
+                        <input type="range" 
+                            id="quantity1" 
+                            name="quantity1" 
+                            min="0" 
+                            max="10">
+                        <button class="button is-text" onclick="saveQuantity1()">
+                        <div class="fa-3x">
+                            <i class="fa-solid fa-cart-shopping fa-shake" style="--fa-animation-duration: 5s; --fa-animation-direction: reverse;" ></i>
+                        </div>
+                        </button>
+                    </div>
+            </div>
+
+
+        <!--Producto 2-->
+            <div class="column is-one-third">
+                <div class="has-text-centered">
+                    <figure class="image is-128x128">
+                        <img class="image is-rounded" src="https://m.media-amazon.com/images/I/61C80byb-TL.jpg">
+                    </figure>
+                </div>
+                <div class="box">
+                    <h2 class="has-text-centered has-text-weight-bold" readonly> Playstation 3</h2>
+                    <h2 class="has-text-centered" readonly> Release Date: November 2006</h2>
+                    <h2 class="has-text-centered" readonly id="price2"> Price: $350</h2>
+                    <label for="quantity2">Cantidad: <span id="displayValue2"></span> </label>
+                    <input type="range" 
+                        id="quantity2" 
+                        name="quantity2" 
+                        min="0" 
+                        max="10">
+                    <button class="button is-text" onclick="saveQuantity2()">
+                    <div class="fa-3x">
+                        <i class="fa-solid fa-cart-shopping fa-shake" style="--fa-animation-duration: 5s; --fa-animation-direction: reverse;" ></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+        <!--Producto 3-->
+            <div class="column is-one-third">
+                <div class="has-text-centered">
+                    <figure class="image is-128x128">
+                        <img class="image is-rounded" src="https://http2.mlstatic.com/D_Q_NP_834546-MLA50832788403_072022-O.webp">
+                    </figure>
+                </div>
+                <div class="box">
+                    <h2 class="has-text-centered has-text-weight-bold" readonly> Xbox One</h2>
+                    <h2 class="has-text-centered" readonly> Release Date: November 2013</h2>
+                    <h2 class="has-text-centered" readonly id="price3"> Price: $200</h2>
+                    <label for="quantity3">Cantidad: <span id="displayValue3"></span> </label>
+                    <input type="range" 
+                        id="quantity3" 
+                        name="quantity3" 
+                        min="0" 
+                        max="10">
+                    <button class="button is-text" onclick="saveQuantity3()">
+                    <div class="fa-3x">
+                        <i class="fa-solid fa-cart-shopping fa-shake" style="--fa-animation-duration: 5s; --fa-animation-direction: reverse;" ></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+        <!--Producto 4-->
+            <div class="column is-one-third">
+                <div class="has-text-centered">
+                    <figure class="image is-128x128">
+                        <img class="image is-rounded" src="https://i0.wp.com/agrlv.com/wp-content/uploads/2019/05/wiiu-ss-blk.jpg?fit=800%2C800">
+                    </figure>
+                </div>
+                <div class="box">
+                    <h2 class="has-text-centered has-text-weight-bold" readonly> Nintendo Wii U</h2>
+                    <h2 class="has-text-centered" readonly> Release Date: November 2012</h2>
+                    <h2 class="has-text-centered" readonly id="price4"> Price: $100</h2>
+                    <label for="quantity4">Cantidad: <span id="displayValue4"></span> </label>
+                    <input type="range" 
+                        id="quantity4" 
+                        name="quantity4" 
+                        min="0" 
+                        max="10">
+                    <button class="button is-text" onclick="saveQuantity4()">
+                    <div class="fa-3x">
+                        <i class="fa-solid fa-cart-shopping fa-shake" style="--fa-animation-duration: 5s; --fa-animation-direction: reverse;" ></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="has-text-centered">
+            <button class="button is-text" onclick="calculateTotal()">
+                <div class="fa-3x">
+                    <i class="fa-solid fa-money-check-dollar fa-beat" style="--fa-beat-scale: 2.0; --fa-animation-duration: 3s;"></i>
+                </div>
+            </button>
+        </div>
+
+        <div id="factura"></div>
+    ` + footer);
 });
 
 router.get('/info',(request,response,next)=>{
