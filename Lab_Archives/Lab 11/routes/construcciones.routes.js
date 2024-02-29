@@ -225,20 +225,7 @@ router.get('/info',(request,response,next)=>{
 
 router.get('/construir',(request,response, next) => {
     console.log(request.body);
-    const fecha = new Date().toLocaleDateString();
-    const hora = new Date().toLocaleTimeString()
-    response.send(header + `<h1 class="title">CONSTRUYE TU REPERTORIO DE IMAGENES</h1>
-    <form action="construir" method="POST">
-        <label class="label" for="nombre">Nombre</label>
-        <input name="nombre" id="nombre" type="text" class="input"><br>
-        <label class="label" for="imagen">Imagen</label>
-        <input name="imagen" id="imagen" type="text" class="input"><br><br>
-        <label class="label" for="descripcion">Descripcion</label>
-        <input name="descripcion" id="descripcion" type="text" class="input"><br>
-        <input type="hidden" name= "fecha_actual" id="fecha_actual"value=${fecha}>
-        <input type="hidden" name= "hora_actual" id="hora_actual"value=${hora}>
-        <input class="button is-danger" type="submit" value="Construir">
-    </form>` + footer);
+    response.render('construir')
 });
 
 router.post('/construir',(request,response, next) => {
@@ -248,48 +235,9 @@ router.post('/construir',(request,response, next) => {
 });
 
 router.get('/',(request, response, next) => {
-    let tarjetas_construcciones = '';
-
-    for(let construccion of construcciones){
-        tarjetas_construcciones +=
-            `<div class="column">
-            <div class="card">
-                <div class="card-image">
-                <figure class="image is-4by3">
-                    <img src="${construccion.imagen}" alt="Placeholder image">
-                </figure>
-                </div>
-                <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                    <figure class="image is-48x48">
-                        <img src="${construccion.imagen}" alt="Placeholder image">
-                    </figure>
-                    </div>
-                    <div class="media-content">
-                    <p class="title is-4">${construccion.nombre}</p>
-                    <p class="subtitle is-6">@johnsmith</p>
-                    </div>
-                </div>
-            
-                <div class="content">
-                    ${construccion.descripcion} 
-                    <a>@bulmaio</a>.
-                    <a href="#">#css</a> <a href="#">#responsive</a>
-                    <br>
-                    <time>${construccion.fecha_actual}</time>
-                    <time>${construccion.hora_actual}</time>
-                </div>
-                </div>
-            </div>
-        </div>`;
-    }
-    console.log('Otro middleware!');
-    response.send(header +
-        `<section class="section">
-        <div class="container">
-            <h1 class="title">MI PAGINA WOWOWOWOWOOW!</h1>` + tarjetas_construcciones + footer
-    ); //Manda la respuesta
+   response.render('raiz',{
+    construcciones:construcciones,
+   });
 });
 
 module.exports = router;
