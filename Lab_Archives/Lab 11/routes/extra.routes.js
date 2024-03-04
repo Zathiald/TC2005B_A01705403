@@ -6,4 +6,6 @@ router.get('/sorpresa',extrasController.get_sorpresa);
 
 router.get('/info',extrasController.get_info);
 
+router.get('/emulador',extrasController.get_emulador);
+
 module.exports = router;

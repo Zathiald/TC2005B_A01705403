@@ -29,5 +29,4 @@ module.exports = class Construccion {
     static fetchAll() {
         return construcciones;
     }
-
 }

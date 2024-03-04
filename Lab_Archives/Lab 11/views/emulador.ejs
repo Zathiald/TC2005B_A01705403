@@ -1,0 +1,52 @@
+<%- include('includes/head.ejs' )%>
+
+<title class="title has-text-centered">Catálogo de Emuladores</title>
+<style>
+    .card {
+        background-color: black;
+        color: white;
+    }
+    .card-content {
+        padding: 1rem;
+    }
+    .title, .subtitle {
+        color: white;
+    }
+</style>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">EMULADORES</h1>
+        <div class="columns is-multiline">
+            <% for (let emulador of emuladores) { %>
+                <div class="column is-one-third">
+                    <div class="card">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="<%= emulador.imagen %>" alt="Imagen de <%= emulador.nombre %>">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="<%= emulador.imagen %>" alt="Imagen de <%= emulador.nombre %>">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4"><%= emulador.nombre %></p>
+                                    <p class="subtitle is-6">@<%= emulador.nombre%></p>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <p><%= emulador.enlace %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+<%- include('includes/footer.ejs')%>

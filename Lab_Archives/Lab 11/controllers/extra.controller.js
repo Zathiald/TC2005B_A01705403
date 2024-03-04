@@ -9,3 +9,9 @@ exports.get_info = (request,response,next)=>{
     response.render('info');
 
 };
+
+exports.get_emulador = (request,response,next)=>{
+    console.log(request.body);
+    response.render('emulador');
+
+};
