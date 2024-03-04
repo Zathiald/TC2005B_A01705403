@@ -1,15 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const extrasController = require('../controllers/extra.controller');
 
-router.get('/sorpresa',(request,response,next)=>{
-    console.log(request.body);
-    response.render('sorpresa')
-});
+router.get('/sorpresa',extrasController.get_sorpresa);
 
-router.get('/info',(request,response,next)=>{
-    console.log(request.body);
-    response.render('info');
-
-});
+router.get('/info',extrasController.get_info);
 
 module.exports = router;
