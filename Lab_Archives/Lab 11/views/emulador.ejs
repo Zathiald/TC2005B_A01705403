@@ -1,6 +1,13 @@
-<%- include('includes/head.ejs' )%>
+<%- include('includes/head.ejs') %>
 
-<title class="title has-text-centered">Catálogo de Emuladores</title>
+<style>
+    /* Estilos personalizados para el juego */
+    /* ... */
+    #emulatorFrame {
+        display: none; /* Inicialmente oculto */
+    }
+</style>
+
 <style>
     .card {
         background-color: black;
@@ -13,6 +20,7 @@
         color: white;
     }
 </style>
+
 </head>
 <body>
 <section class="section">
@@ -23,7 +31,7 @@
                 <div class="column is-one-third">
                     <div class="card">
                         <div class="card-image">
-                            <figure class="image is-4by3">
+                            <figure class="image">
                                 <img src="<%= emulador.imagen %>" alt="Imagen de <%= emulador.nombre %>">
                             </figure>
                         </div>
@@ -36,11 +44,23 @@
                                 </div>
                                 <div class="media-content">
                                     <p class="title is-4"><%= emulador.nombre %></p>
-                                    <p class="subtitle is-6">@<%= emulador.nombre%></p>
+                                    <p class="subtitle is-6">@<%= emulador.nombre %></p>
                                 </div>
                             </div>
                             <div class="content">
-                                <p><%= emulador.enlace %></p>
+                                <!-- Aquí está el juego incrustado -->
+                                <iframe id="emulatorFrame" width="560" height="315" 
+                                    allow="fullscreen; autoplay; encrypted-media" 
+                                    src="<%= emulador.enlace %>" 
+                                    frameborder="0" allowfullscreen="true" 
+                                    msallowfullscreen="true" mozallowfullscreen="true" 
+                                    webkitallowfullscreen="true" 
+                                    allowpaymentrequest="false" 
+                                    referrerpolicy="unsafe-url" 
+                                    sandbox="allow-same-origin allow-forms allow-scripts allow-pointer-lock allow-orientation-lock allow-popups" 
+                                    scrolling="no"></iframe>
+                                <!-- Botón para alternar la visibilidad -->
+                                <button class= "button is-dark" onclick="toggleEmulator()">Abrir/Cerrar Emulador</button>
                             </div>
                         </div>
                     </div>
@@ -48,5 +68,15 @@
             <% } %>
         </div>
     </div>
+</section>
 
-<%- include('includes/footer.ejs')%>
+<script>
+    function toggleEmulator() {
+        const emulatorFrame = document.getElementById('emulatorFrame');
+        if (emulatorFrame.style.display === 'none') {
+            emulatorFrame.style.display = 'block'; // Mostrar el iframe
+        } else {
+            emulatorFrame.style.display = 'none'; // Ocultar el iframe
+        }
+    }
+</script>
