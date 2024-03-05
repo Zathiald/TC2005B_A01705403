@@ -27,31 +27,31 @@
     <div class="container">
         <h1 class="title has-text-centered">EMULADORES</h1>
         <div class="columns is-multiline">
-            <% for (let emulador of emuladores) { %>
+            <% for (let i = 0; i < emuladores.length; i++) { %>
                 <div class="column is-one-third">
                     <div class="card">
                         <div class="card-image">
                             <figure class="image">
-                                <img src="<%= emulador.imagen %>" alt="Imagen de <%= emulador.nombre %>">
+                                <img src="<%= emuladores[i].imagen %>" alt="Imagen de <%= emuladores[i].nombre %>">
                             </figure>
                         </div>
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
                                     <figure class="image is-48x48">
-                                        <img src="<%= emulador.imagen %>" alt="Imagen de <%= emulador.nombre %>">
+                                        <img src="<%= emuladores[i].imagen %>" alt="Imagen de <%= emuladores[i].nombre %>">
                                     </figure>
                                 </div>
                                 <div class="media-content">
-                                    <p class="title is-4"><%= emulador.nombre %></p>
-                                    <p class="subtitle is-6">@<%= emulador.nombre %></p>
+                                    <p class="title is-4"><%= emuladores[i].nombre %></p>
+                                    <p class="subtitle is-6"><%= emuladores[i].descripcion %></p>
                                 </div>
                             </div>
                             <div class="content">
                                 <!-- Aquí está el juego incrustado -->
-                                <iframe id="emulatorFrame" width="560" height="315" 
+                                <iframe id="emulatorFrame<%=i%>" width="560" height="315" 
                                     allow="fullscreen; autoplay; encrypted-media" 
-                                    src="<%= emulador.enlace %>" 
+                                    src="<%=emuladores[i].enlace%>"
                                     frameborder="0" allowfullscreen="true" 
                                     msallowfullscreen="true" mozallowfullscreen="true" 
                                     webkitallowfullscreen="true" 
@@ -60,7 +60,7 @@
                                     sandbox="allow-same-origin allow-forms allow-scripts allow-pointer-lock allow-orientation-lock allow-popups" 
                                     scrolling="no"></iframe>
                                 <!-- Botón para alternar la visibilidad -->
-                                <button class= "button is-dark" onclick="toggleEmulator()">Abrir/Cerrar Emulador</button>
+                                <button class= "button is-dark" onclick='toggleEmulator("<%=i%>")'>Abrir/Cerrar Emulador</button>
                             </div>
                         </div>
                     </div>
@@ -71,8 +71,8 @@
 </section>
 
 <script>
-    function toggleEmulator() {
-        const emulatorFrame = document.getElementById('emulatorFrame');
+    function toggleEmulator(i) {
+        const emulatorFrame = document.getElementById('emulatorFrame' + i);
         if (emulatorFrame.style.display === 'none') {
             emulatorFrame.style.display = 'block'; // Mostrar el iframe
         } else {
@@ -80,3 +80,4 @@
         }
     }
 </script>
+
