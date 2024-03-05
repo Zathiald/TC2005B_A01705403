@@ -1,17 +1,19 @@
+
 const emuladores = [
     {
     nombre: "Super Mario Bros.", 
     descripcion: "1985",
     imagen: "https://i.etsystatic.com/6824854/r/il/53debe/585887395/il_1080xN.585887395_gpan.jpg" , 
-    enlace: "https://games.construct.net/769/latest",
+    enlace: "../public/roms/Mario.nes",
     },
     {
     nombre: "The Legend of Zelda", 
     descripcion: "1986",
     imagen: "https://i.ebayimg.com/thumbs/images/g/nPIAAOSwFedktqbB/s-l640.jpg" , 
-    enlace: "https://www.webmulator.com/games/nintendo/super-mario?emulator_id=1",
+    enlace: "../public/roms/LegZelda.nes",
     }
 ];
+
 
 module.exports = class Emulador {
     constructor(mi_nombre, mi_descripcion,mi_imagen, mi_enlace) {

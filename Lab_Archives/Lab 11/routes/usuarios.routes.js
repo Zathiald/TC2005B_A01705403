@@ -5,6 +5,8 @@ const controllerUsuarios= require('../controllers/usuarios.controller')
 
 router.get('/login',controllerUsuarios.get_login);
 
-router.get('/login',controllerUsuarios.post_login);
+router.post('/login',controllerUsuarios.post_login);
+
+router.get('/logout',controllerUsuarios.logout);
 
 module.exports=router;
