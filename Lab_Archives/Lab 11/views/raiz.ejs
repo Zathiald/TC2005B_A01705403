@@ -1,14 +1,14 @@
-<%- include('includes/head.ejs' )%>
+<%- include('includes/head.ejs', {username: username}) %>
 
         <section class="section">
             <div class="container">
-                <h1 class="title">Hola mundo de Minecraft!</h1>
+                <h1 class="title has-text-centered">LABORATORIO DE IMAGENES</h1>
 
-                <div class="columns">
+                <div class="columns is-multiline">
 
                 <% for (let construccion of construcciones) { %>
 
-                        <div class="column">
+                        <div class="column is-one-third">
                             <div class="card">
                                 <div class="card-image">
                                 <figure class="image is-4by3">
@@ -33,14 +33,19 @@
                                     <a>@bulmaio</a>.
                                     <a href="#">#css</a> <a href="#">#responsive</a>
                                     <br>
-                                    <time><%= new Date().toLocaleDateString() %></time>
-                                    <time><%= new Date().toLocaleTimeString() %></time>
+                                    <time><%= construccion.fecha_actual %></time>
+                                    <time><%= construccion.hora_actual %></time>
                                 </div>
                                 </div>
                             </div>
                         </div>
                 <% } %>  
             </div>
+
+        
+            <% if(cookies != "") {%>
+                <div>La ultima imagen fue <%=cookies%>.</div>
+            <% } %>  
 
 <%- include('includes/footer.ejs')%>
 

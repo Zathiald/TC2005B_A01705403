@@ -10,7 +10,7 @@
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="/">
-                <img src="https://i.ytimg.com/vi/V3yl3m18hys/hqdefault.jpg" width="112" height="28">
+                <img src='https://i.gifer.com/origin/24/2432cf5ff737ad7d1794a29d042eb02e_w200.gif' alt="Mi logotipo" width="80" height="15">
                 </a>
             
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -42,8 +42,8 @@
                     <a class="navbar-item" href="/info">
                         Informate
                     </a>
-                    <a class="navbar-item">
-                        Contact
+                    <a class="navbar-item" href="/emulador">
+                        Diviertete
                     </a>
                     <hr class="navbar-divider">
                     <a class="navbar-item">
@@ -56,12 +56,21 @@
                 <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                    <a class="button is-primary">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
-                    </a>
+                        <% if (username == '') { %>
+                            <a class="button is-primary">
+                                <strong>Registrarse</strong>
+                            </a>
+                            <a href="/users/login" class="button is-light">
+                                Entrar
+                            </a>
+                        <% } else {%>
+                            <span>
+                                Hola <strong> <%= username %> | </strong>
+                            </span>
+                            <a href="/users/logout" class="button is-danger">
+                                Salir
+                            </a>
+                        <% } %>
                     </div>
                 </div>
                 </div>
