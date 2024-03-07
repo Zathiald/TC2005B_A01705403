@@ -13,10 +13,13 @@ exports.post_construir = (request,response, next) => {
             request.body.imagen,
             request.body.descripcion,
             )
-    construccion.save();
-    response.setHeader('Set-Cookie','ultima_construccion=' +
-        request.body.nombre + '; HttpOnly');
-    response.redirect('/');
+    construccion.save()
+        .then(([rows,fieldData]) => {
+                response.setHeader('Set-Cookie','ultima_construccion=' +
+                request.body.nombre + '; HttpOnly');
+                response.redirect('/');
+        })
+        .catch((error) => {console.log(error)});
 };
 
 exports.get_root = (request, response, next) => {

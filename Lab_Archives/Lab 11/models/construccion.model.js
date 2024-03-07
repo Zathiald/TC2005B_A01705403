@@ -10,11 +10,10 @@ module.exports = class Construccion {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        construcciones.push({
-            nombre: this.nombre,
-            imagen: this.imagen,
-            descripcion: this.descripcion,
-        });
+            return db.execute('INSERT INTO construccion (nombre, imagen, descripcion, username) VALUES (?, ?, ?, "samir27")',
+            [this.nombre,this.imagen,this.descripcion]
+        );
+
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
