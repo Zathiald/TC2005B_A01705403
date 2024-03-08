@@ -12,12 +12,14 @@ exports.post_construir = (request,response, next) => {
         new Construccion(request.body.nombre,
             request.body.imagen,
             request.body.descripcion,
-            request.body.fecha_actual,
-            request.body.hora_actual)
-    construccion.save();
-    response.setHeader('Set-Cookie','ultima_construccion=' +
-        request.body.nombre + '; HttpOnly');
-    response.redirect('/');
+            )
+    construccion.save()
+        .then(([rows,fieldData]) => {
+                response.setHeader('Set-Cookie','ultima_construccion=' +
+                request.body.nombre + '; HttpOnly');
+                response.redirect('/');
+        })
+        .catch((error) => {console.log(error)});
 };
 
 exports.get_root = (request, response, next) => {
@@ -30,11 +32,20 @@ exports.get_root = (request, response, next) => {
         cookies = '';
     }
     console.log(cookies);
-    response.render('raiz',{
-     construcciones: Construccion.fetchAll(),
-     cookies: cookies,
-     username: request.session.username || '',
-    });
+
+    Construccion.fetchAll().then(([rows,fieldData]) => {
+        console.log(rows);
+        response.render('raiz',{
+            construcciones: rows,
+            cookies: cookies,
+            username: request.session.username || '',
+        });
+    })
+
+    .catch((error)=> {
+        console.log(error)
+    })
+
  };
 
 
