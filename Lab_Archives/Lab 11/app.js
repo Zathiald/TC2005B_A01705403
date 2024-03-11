@@ -33,9 +33,9 @@ const rutasUsuarios = require('./routes/usuarios.routes')
 
 app.use('/users',rutasUsuarios);
 
-app.use('/',rutasApp);
+app.use('/construcciones', rutasApp);
 
-app.use('/',rutasExtra);
+app.use('/extra',rutasExtra);
 
 
 app.use((request,response,next)=>{

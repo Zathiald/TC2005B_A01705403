@@ -6,6 +6,13 @@
 
                 <div class="columns is-multiline">
 
+                <%if (construcciones.length < 1) { %>
+                    <div class ="notification is-info">
+                        <button class="delete"></button>
+                        No existe tu imagen 
+                    </div>
+                <% } %>
+
                 <% for (let construccion of construcciones) { %>
 
                         <div class="column is-one-third">

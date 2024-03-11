@@ -22,13 +22,13 @@
             
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                <a class="navbar-item" href="/">
-                    Home
-                </a>
-            
-                <a class="navbar-item" href="/construir">
-                    Construir
-                </a>
+                    <a class="navbar-item" href="/construcciones">
+                        Home
+                    </a>
+                
+                    <a class="navbar-item" href="/construcciones/construir">
+                        Construir
+                    </a>
             
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
@@ -36,13 +36,13 @@
                     </a>
             
                     <div class="navbar-dropdown">
-                    <a class="navbar-item" href="/sorpresa">
+                    <a class="navbar-item" href="/extra/sorpresa">
                          Oh?
                     </a>
-                    <a class="navbar-item" href="/info">
+                    <a class="navbar-item" href="/extra/info">
                         Informate
                     </a>
-                    <a class="navbar-item" href="/emulador">
+                    <a class="navbar-item" href="/extra/emulador">
                         Diviertete
                     </a>
                     <hr class="navbar-divider">
@@ -57,8 +57,8 @@
                 <div class="navbar-item">
                     <div class="buttons">
                         <% if (username == '') { %>
-                            <a class="button is-primary">
-                                <strong>Registrarse</strong>
+                            <a href="/users/signup"class="button is-primary">
+                                <strong>Sign up</strong>
                             </a>
                             <a href="/users/login" class="button is-light">
                                 Entrar
