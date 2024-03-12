@@ -22,14 +22,25 @@
             
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
+
+                <% for (let funcion of permisos) { %>
+                    <% if (funcion.funcion == 'ver') { %>
                     <a class="navbar-item" href="/construcciones">
-                        Home
+                        Construcciones
                     </a>
+                    <% } %>
                 
+                    <% if (funcion.funcion == 'construir') { %>
                     <a class="navbar-item" href="/construcciones/construir">
                         Construir
                     </a>
+                    <% } %>
+                <% } %>
             
+                </div>
+            
+                <% for (let funcion of permisos) { %>
+                    <% if (funcion.funcion == 'ver') { %>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                     More
@@ -45,10 +56,8 @@
                     <a class="navbar-item" href="/extra/emulador">
                         Diviertete
                     </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        Report an issue
-                    </a>
+                    <% } %>
+                <% } %>
                     </div>
                 </div>
                 </div>

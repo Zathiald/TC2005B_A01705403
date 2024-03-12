@@ -1,4 +1,7 @@
-<%- include('includes/head.ejs', {username: username}) %>
+<%- include('includes/head.ejs', 
+    {username: username,
+        permisos: permisos}) 
+    %>
 
         <section class="section">
             <div class="container">
@@ -47,11 +50,6 @@
                         </div>
                 <% } %>  
             </div>
-
-        
-            <% if(cookies != "") {%>
-                <div>La ultima imagen fue <%=cookies%>.</div>
-            <% } %>  
 
 <%- include('includes/footer.ejs')%>
 
