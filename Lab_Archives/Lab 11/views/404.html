@@ -1,74 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Minecraft</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-</head>
-
-<body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-            <img src="https://i.kym-cdn.com/photos/images/newsfeed/002/358/737/262.jpg" width="112" height="28">
-        </a>
-    
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-        </div>
-    
-        <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-            <a class="navbar-item" href="/construcciones/">
-            Home
-            </a>
-    
-            <a class="navbar-item" href="/construcciones/construir">
-            Construir
-            </a>
-    
-            <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-                More
-            </a>
-    
-            <div class="navbar-dropdown">
-                <a class="navbar-item" href="extra/sorpresa">
-                    Oh?
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Samir</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    </head>
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                <img src='https://i.gifer.com/origin/24/2432cf5ff737ad7d1794a29d042eb02e_w200.gif' alt="Mi logotipo" width="80" height="15">
                 </a>
-                <a class="navbar-item" href="extra/info">
-                   Informate
-                </a>
-                </a>
-                <a class="navbar-item">
-                Contact
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item">
-                Report an issue
+            
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
                 </a>
             </div>
+            
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/construcciones">
+                        Home
+                    </a>
+                
+                    <a class="navbar-item" href="/construcciones/construir">
+                        Construir
+                    </a>
+            
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                    More
+                    </a>
+            
+                    <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/extra/sorpresa">
+                         Oh?
+                    </a>
+                    <a class="navbar-item" href="/extra/info">
+                        Informate
+                    </a>
+                    <a class="navbar-item" href="/extra/emulador">
+                        Diviertete
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Report an issue
+                    </a>
+                    </div>
+                </div>
+                </div>
+            
+                <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <% if (username == '') { %>
+                            <a href="/users/signup"class="button is-primary">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a href="/users/login" class="button is-light">
+                                Entrar
+                            </a>
+                        <% } else {%>
+                            <span>
+                                Hola <strong> <%= username %> | </strong>
+                            </span>
+                            <a href="/users/logout" class="button is-danger">
+                                Salir
+                            </a>
+                        <% } %>
+                    </div>
+                </div>
+                </div>
             </div>
-        </div>
-    
-        <div class="navbar-end">
-            <div class="navbar-item">
-            <div class="buttons">
-                <a class="button is-primary">
-                <strong>Sign up</strong>
-                </a>
-                <a class="button is-light">
-                Log in
-                </a>
-            </div>
-            </div>
-        </div>
-        </div>
-    </nav>
+            </nav>
 
     <section class="section">
     <div class="container">
