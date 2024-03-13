@@ -1,10 +1,20 @@
-<%- include('includes/head.ejs', {username: username}) %>
+<%- include('includes/head.ejs', 
+    {username: username,
+        permisos: permisos}) 
+    %>
 
         <section class="section">
             <div class="container">
                 <h1 class="title has-text-centered">LABORATORIO DE IMAGENES</h1>
 
                 <div class="columns is-multiline">
+
+                <%if (construcciones.length < 1) { %>
+                    <div class ="notification is-info">
+                        <button class="delete"></button>
+                        No existe tu imagen 
+                    </div>
+                <% } %>
 
                 <% for (let construccion of construcciones) { %>
 
@@ -40,11 +50,6 @@
                         </div>
                 <% } %>  
             </div>
-
-        
-            <% if(cookies != "") {%>
-                <div>La ultima imagen fue <%=cookies%>.</div>
-            <% } %>  
 
 <%- include('includes/footer.ejs')%>
 

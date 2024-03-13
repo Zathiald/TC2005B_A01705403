@@ -51,5 +51,6 @@ module.exports = class Emulador {
     static fetchAll() {
         return emuladores;
     }
+    
 }
 

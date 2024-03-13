@@ -12,12 +12,19 @@ app.use(session({
     saveUninitialized: false, //Asegura que no se guarde una sesión para una petición que no lo necesita
 }));
 
+
+
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
 
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: false}));
+
+//Proteccion contra ataques de CSRF
+const csrf = require('csurf');
+const csrfProtection = csrf();
+app.use(csrfProtection); 
 
 //Middleware
 app.use((request, response, next) => {
@@ -33,9 +40,9 @@ const rutasUsuarios = require('./routes/usuarios.routes')
 
 app.use('/users',rutasUsuarios);
 
-app.use('/',rutasApp);
+app.use('/construcciones', rutasApp);
 
-app.use('/',rutasExtra);
+app.use('/extra',rutasExtra);
 
 
 app.use((request,response,next)=>{

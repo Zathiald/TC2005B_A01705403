@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Application</title>
+        <title>Samir</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     </head>
     <body>
@@ -22,33 +22,42 @@
             
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                <a class="navbar-item" href="/">
-                    Home
-                </a>
+
+                <% for (let funcion of permisos) { %>
+                    <% if (funcion.funcion == 'ver') { %>
+                    <a class="navbar-item" href="/construcciones">
+                        Construcciones
+                    </a>
+                    <% } %>
+                
+                    <% if (funcion.funcion == 'construir') { %>
+                    <a class="navbar-item" href="/construcciones/construir">
+                        Construir
+                    </a>
+                    <% } %>
+                <% } %>
             
-                <a class="navbar-item" href="/construir">
-                    Construir
-                </a>
+                </div>
             
+                <% for (let funcion of permisos) { %>
+                    <% if (funcion.funcion == 'ver') { %>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
                     More
                     </a>
             
                     <div class="navbar-dropdown">
-                    <a class="navbar-item" href="/sorpresa">
+                    <a class="navbar-item" href="/extra/sorpresa">
                          Oh?
                     </a>
-                    <a class="navbar-item" href="/info">
+                    <a class="navbar-item" href="/extra/info">
                         Informate
                     </a>
-                    <a class="navbar-item" href="/emulador">
+                    <a class="navbar-item" href="/extra/emulador">
                         Diviertete
                     </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        Report an issue
-                    </a>
+                    <% } %>
+                <% } %>
                     </div>
                 </div>
                 </div>
@@ -57,8 +66,8 @@
                 <div class="navbar-item">
                     <div class="buttons">
                         <% if (username == '') { %>
-                            <a class="button is-primary">
-                                <strong>Registrarse</strong>
+                            <a href="/users/signup"class="button is-primary">
+                                <strong>Sign up</strong>
                             </a>
                             <a href="/users/login" class="button is-light">
                                 Entrar
