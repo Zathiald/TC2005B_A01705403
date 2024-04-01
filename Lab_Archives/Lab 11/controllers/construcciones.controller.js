@@ -10,8 +10,9 @@ exports.get_construir = (request, response, next) => {
 
 exports.post_construir = (request, response, next) => {
     console.log(request.body);
+    console.log(request.file);
     const construccion = 
-    new Construccion(request.body.nombre, request.body.imagen,request.body.descripcion);
+    new Construccion(request.body.nombre, request.file.filename,request.body.descripcion);
     construccion.save()
         .then(([rows, fieldData]) => {
             response.setHeader('Set-Cookie', 
