@@ -16,8 +16,9 @@
                     </div>
                 <% } %>
 
+                <% let columns = 0; %>
                 <% for (let construccion of construcciones) { %>
-
+                        <% columns ++; %>
                         <div class="column is-one-third">
                             <div class="card">
                                 <div class="card-image">
@@ -50,6 +51,11 @@
                         </div>
                 <% } %>  
             </div>
+
+            <% if(columns %4 == 0) { %>
+                </div>
+                <div class="columns">
+            <% }%>
 
 <%- include('includes/footer.ejs')%>
 
