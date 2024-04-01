@@ -1,12 +1,12 @@
 <%- include('includes/head.ejs', {username: username, permisos: permisos}) %>
 
     <h1 class="title">CONSTRUYE TU REPERTORIO DE IMAGENES</h1>
-        <form action="/construcciones/construir" method="POST">
+        <form action="/construcciones/construir" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
             <label class="label" for="nombre">Nombre</label>
             <input name="nombre" id="nombre" type="text" class="input"><br>
             <label class="label" for="imagen">Imagen</label>
-            <input name="imagen" id="imagen" type="text" class="input"><br><br>
+            <input name="imagen" id="imagen" type="file" class="input"><br><br>
             <label class="label" for="descripcion">Descripcion</label>
             <input name="descripcion" id="descripcion" type="text" class="input"><br>
             <input type="hidden" name= "hora_actual" id="hora_actual"value="<%= new Date().toLocaleTimeString() %>">
