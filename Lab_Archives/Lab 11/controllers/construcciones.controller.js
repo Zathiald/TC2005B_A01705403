@@ -47,3 +47,11 @@ exports.get_root = (request, response, next) => {
     });
 
 }
+
+exports.get_buscar = (request,response,next) => {
+    Construccion.search(request.params.valor_busqueda)
+    .then(([construcciones,fieldData]) => {
+        return response.status(200).json({construcciones: construcciones});
+    })
+    .catch((error) => {console.log(error)});
+}

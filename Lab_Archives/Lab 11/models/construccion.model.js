@@ -35,4 +35,9 @@ module.exports = class Construccion {
         }
     }
 
+    static search(valor_buscar){
+        return db.execute('SELECT * FROM construccion WHERE nombre LIKE ?',
+        ['%'+ valor_buscar + '%']);
+    }
+
 }
