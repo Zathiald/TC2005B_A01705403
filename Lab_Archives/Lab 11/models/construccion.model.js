@@ -40,4 +40,8 @@ module.exports = class Construccion {
         ['%'+ valor_buscar + '%']);
     }
 
+    static delete(id) {
+        return db.execute('DELETE FROM construccion WHERE id=?', 
+            [id]);
+    }
 }
