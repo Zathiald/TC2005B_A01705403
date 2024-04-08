@@ -1,29 +1,147 @@
 <%- include('includes/head.ejs', {username: username, permisos: permisos}) %>
 
+    <style>
+        /* Estilo para los elementos de la lista al pasar el mouse */
+        #results ul li:hover {
+            background-color: #f0f0f0;
+            /* Cambia el color de fondo */
+            cursor: pointer;
+            /* Cambia el cursor a una mano */
+        }
 
-<body>
-    <div class="container">
-        <blockquote class=" box">
-            El archivo package.json es un componente fundamental en proyectos de JavaScript y es utilizado por npm, el gestor de paquetes más popular. Contiene metadatos importantes sobre el proyecto, como su nombre, versión, dependencias necesarias y scripts disponibles para su ejecución.
-        </blockquote>
-        <p class="has-text-centered">Unos de los campos más comunes en un archivo package.json son:</p>
-        <div class="list">
-            <ol type="I" class="list-item">
-                <li>name: Nombre del proyecto, librería o paquete. Se recomienda que coincida con el nombre del repositorio.</li>
-                <li>version: Versión del paquete. Generalmente se utiliza semver (Semantic Versioning) para especificar versiones.</li>
-                <li>description: Breve descripción del paquete o proyecto.</li>
-                <li> main: Punto de entrada del proyecto. Por lo general, es index.js (para Node.js) o index.html (para navegadores).</li>
-                <li> scripts: Colección de scripts del proyecto. Estos scripts pueden ser ejecutados con comandos como npm run <script-name>.</li>
-                <li> keywords: Palabras clave relacionadas con el proyecto. Útil para búsquedas.</li> 
-                <li> author: Nombre del autor del paquete o proyecto.</li>
-                <li> license: Tipo de licencia del paquete o proyecto. Por defecto, suele ser ISC.</li>
-                <li> dependencies:  Colección de paquetes necesarios para producción y sus versiones instaladas.</li>
-                <li> devDependencies: Colección de paquetes necesarios para desarrollo y sus versiones instaladas.</li>
-                <li> homepage: URL de la página principal del paquete.</li>
-                <li> repository: URL del repositorio. Debe indicar el tipo (por ejemplo, git) y la ruta.</li>
-                <li> bugs: Objeto con un campo url que apunta a la página de issues del proyecto.</li>
-            </ol>
+        /* Estilos para la tabla de detalles */
+        #detail {
+            margin-top: 20px;
+            /* Espacio adicional arriba de la tabla */
+        }
+
+        #detail table {
+            width: 100%;
+            /* La tabla ocupa todo el ancho disponible */
+            border-collapse: collapse;
+            /* Los bordes de la tabla se colapsan en uno solo */
+        }
+
+        #detail th,
+        #detail td {
+            border: 1px solid #ddd;
+            /* Bordes de las celdas de la tabla */
+            padding: 8px;
+            /* Espaciado interno de las celdas */
+        }
+
+        #detail th {
+            background-color: #f2f2f2;
+            /* Color de fondo para los encabezados de la tabla */
+            text-align: left;
+            /* Alineación del texto de los encabezados */
+        }
+    </style>
+
+    <body>
+        <h1 class="title has-text-centered is-italic is-1 is-family-code">Buscador de Star Wars</h1>
+        <input type="text" id="searchInput" placeholder="Buscar en Star Wars...">
+        <button onclick="searchStarWars()">Buscar</button>
+        <div id="results">
+            <!-- Las opciones de búsqueda se mostrarán aquí -->
         </div>
-    </div>
+        <div id="detail">
+            <!-- La información detallada se mostrará aquí en una tabla -->
+        </div>
 
-<%- include('includes/footer.ejs')%>
+        <script>
+            function searchStarWars() {
+                let input = document.getElementById('searchInput');
+                let filter = input.value.toLowerCase();
+                let resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = ''; // Limpiar los resultados anteriores
+
+                if (filter) {
+                    // Categorías para buscar
+                    let categories = ['planets', 'people', 'starships'];
+
+                    categories.forEach(category => {
+                        let url = `https://swapi.dev/api/${category}/?search=${filter}`;
+
+                        fetch(url).then(response => response.json())
+                            .then(data => {
+                                if (data.results.length > 0) {
+                                    let categoryDiv = document.createElement('div');
+                                    categoryDiv.innerHTML = `<strong>${category.toUpperCase()}:</strong>`;
+                                    let list = document.createElement('ul');
+
+                                    data.results.forEach(item => {
+                                        let listItem = document.createElement('li');
+                                        listItem.innerHTML = item.name;
+                                        listItem.onclick = function () {
+                                            fetchDetails(item.url, category);
+                                        };
+                                        list.appendChild(listItem);
+                                    });
+
+                                    categoryDiv.appendChild(list);
+                                    resultsDiv.appendChild(categoryDiv);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error al buscar en la categoría ' + category + ':', error);
+                            });
+                    });
+                }
+            }
+
+            function fetchDetails(url, category) {
+                fetch(url)
+                    .then(response => response.json())
+                    .then(details => {
+                        showDetails(details, category);
+                    });
+            }
+
+            function showDetails(details, category) {
+                let detailDiv = document.getElementById('detail');
+                detailDiv.innerHTML = ''; // Limpiar los detalles anteriores
+
+                let table = `<table><tbody>`;
+                // Mostrar información basada en la categoría
+                switch (category) {
+                    case 'planets':
+                        table += `<tr><th>Nombre</th><td>${details.name}</td></tr>`;
+                        table += `<tr><th>Temperatura</th><td>${details.climate}</td></tr>`;
+                        table += `<tr><th>Gravedad</th><td>${details.gravity}</td></tr>`;
+                        table += `<tr><th>Población</th><td>${details.population}</td></tr>`;
+                        break;
+                    case 'starships':
+                        table += `<tr><th>Nombre</th><td>${details.name}</td></tr>`;
+                        table += `<tr><th>Costo en créditos</th><td>${details.cost_in_credits}</td></tr>`;
+                        table += `<tr><th>Capacidad de carga</th><td>${details.cargo_capacity}</td></tr>`;
+                        table += `<tr><th>Modelo</th><td>${details.model}</td></tr>`;
+                        break;
+                    case 'people':
+                        // Asumiendo que 'species' y 'homeworld' son URLs, necesitamos hacer fetch para obtener los nombres
+                        fetch(details.species[0])
+                            .then(response => response.json())
+                            .then(speciesData => {
+                                table += `<tr><th>Especie</th><td>${speciesData.name}</td></tr>`;
+                                return fetch(details.homeworld);
+                            })
+                            .then(response => response.json())
+                            .then(homeworldData => {
+                                table += `<tr><th>Planeta de origen</th><td>${homeworldData.name}</td></tr>`;
+                                table += `</tbody></table>`;
+                                detailDiv.innerHTML = table; // Agregar la tabla al div de detalles
+                            });
+                        return; // Salimos de la función para evitar que se sobrescriba la tabla
+                    default:
+                        table += `<tr><td>Información no disponible.</td></tr>`;
+                }
+                table += `</tbody></table>`;
+                detailDiv.innerHTML = table; // Agregar la tabla al div de detalles
+            }
+
+        </script>
+    </body>
+
+    </html>
+
+    <%- include('includes/footer.ejs') %>
